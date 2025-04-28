@@ -1,16 +1,60 @@
-/* style.css */
+@import "tailwindcss";
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  font-family: 'Gilroy', sans-serif;
-  color: #fff;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
-  background-color: #111;
 }
 
-/* Add your custom styles below */
+:root {
+  --light-bg: radial-gradient(circle at 20% 20%, #d4d0f5 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, #b8c4ee 0%, #f7f8ff 80%);
+  --dark-bg: radial-gradient(circle at 20% 20%, #03034a 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, #2a0040 0%, #030014 80%);
+
+  --text-color: #2a0040;
+  --accent: #bf00ff;
+}
+
+html.dark {
+  --text-color: #b8c4ee;
+  --accent: #ff6b6b;
+}
+
+* {
+  transition: color 0.8s ease;
+}
+
+/* Create pseudo-elements for cross-fade effect */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.8s ease;
+  z-index: -1;
+}
+
+body::before {
+  background-image: var(--light-bg);
+  opacity: 1;
+}
+
+body::after {
+  background-image: var(--dark-bg);
+  opacity: 0;
+}
+
+html.dark body::before {
+  opacity: 0;
+}
+
+html.dark body::after {
+  opacity: 1;
+}

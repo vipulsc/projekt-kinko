@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import './App.css'
-
+import { useState } from "react";
+import "./App.css";
+import Theme from "./component/ThemeToggler";
+// bg-[var(--darkaa)]
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-
+      <Theme />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
