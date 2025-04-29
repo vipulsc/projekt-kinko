@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+@import "tailwindcss"; /* Make sure this import is correct */
+
 * {
   box-sizing: border-box;
 }
@@ -7,6 +9,8 @@ html,
 body {
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -17,18 +21,30 @@ body {
 
   --text-color: #2a0040;
   --accent: #bf00ff;
+
+  .custom-text-shadow {
+    text-shadow: 2px 2px 4px #ff6b6b;
+  }
 }
 
 html.dark {
-  --text-color: #b8c4ee;
+  --text-color: #ced5ef;
   --accent: #ff6b6b;
+
+  .custom-text-shadow {
+    text-shadow: 2px 2px 4px #bf00ff;
+  }
 }
 
 * {
-  transition: color 0.8s ease;
+  transition: color 0.8s ease, background 0.8s ease;
 }
 
-/* Create pseudo-elements for cross-fade effect */
+/* Positioning pseudo-elements */
+body {
+  position: relative;
+}
+
 body::before,
 body::after {
   content: "";
@@ -57,4 +73,19 @@ html.dark body::before {
 
 html.dark body::after {
   opacity: 1;
+}
+
+/* styles.css */
+.lora {
+  font-family: "Lora", serif;
+}
+/* styles.css */
+.lora-italic {
+  font-family: "Lora", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.japanese-text {
+  font-family: "Noto Serif JP", serif;
 }

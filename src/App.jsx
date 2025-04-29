@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import WelcomeScreen from "./component/WelcomeScreen";
 import Theme from "./component/ThemeToggler";
-// bg-[var(--darkaa)]
+import HomePage from "./component/HomePage";
 function App() {
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWelcome(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
-      <Theme />
+      {showWelcome ? <WelcomeScreen /> : <Theme />}
+      <HomePage />
     </>
   );
 }
