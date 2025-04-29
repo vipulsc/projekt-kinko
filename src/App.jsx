@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import WelcomeScreen from "./component/WelcomeScreen";
-import Theme from "./component/ThemeToggler";
-import HomePage from "./component/HomePage";
+import HomeWithTheme from "./component/HomeWithTheme"; // Import the merged component
+
 function App() {
   const [showWelcome, setShowWelcome] = useState(true);
 
@@ -13,12 +13,7 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  return (
-    <>
-      {showWelcome ? <WelcomeScreen /> : <Theme />}
-      <HomePage />
-    </>
-  );
+  return <>{showWelcome ? <WelcomeScreen /> : <HomeWithTheme />}</>;
 }
 
 export default App;

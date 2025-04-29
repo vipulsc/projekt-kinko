@@ -6,9 +6,10 @@
 }
 
 html,
-body {
-  height: 100%;
-  width: 100%;
+body,
+#root {
+  height: 100%; /* Change from 100vh to 100% */
+  width: 100%; /* Change from 100vw to 100% */
   margin: 0;
   padding: 0;
 }
@@ -21,7 +22,7 @@ body {
 
   --text-color: #2a0040;
   --accent: #bf00ff;
-
+  --dark-text: #ced5ef;
   .custom-text-shadow {
     text-shadow: 2px 2px 4px #ff6b6b;
   }
@@ -30,7 +31,7 @@ body {
 html.dark {
   --text-color: #ced5ef;
   --accent: #ff6b6b;
-
+  --dark-text: #2a0040;
   .custom-text-shadow {
     text-shadow: 2px 2px 4px #bf00ff;
   }
@@ -88,4 +89,17 @@ html.dark body::after {
 
 .japanese-text {
   font-family: "Noto Serif JP", serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
 }
