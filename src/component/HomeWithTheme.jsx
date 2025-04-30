@@ -1,11 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-
+import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
+import { MutatingDots } from "react-loader-spinner";
 const HomeWithTheme = () => {
   const [rotated, setRotated] = useState(false);
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "dark"
   );
+  const [isLoading, setIsLoading] = useState({
+    import: false,
+    create: false,
+  });
+
+  const navigate = useNavigate();
+
+  const handleClick = (path) => {
+    if (path === "import") {
+      setIsLoading({ ...isLoading, import: true });
+    } else if (path === "create") {
+      setIsLoading({ ...isLoading, create: true });
+    }
+
+    setTimeout(() => {
+      navigate(`/${path}`);
+      setIsLoading({ import: false, create: false });
+    }, 1000);
+  };
 
   const toggleTheme = () => {
     setRotated((prev) => !prev);
@@ -20,7 +41,7 @@ const HomeWithTheme = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Header Section (logo and toggler) */}
-      <div className="w-full flex items-center justify-between px-8 pt-8 absolute top-0 z-50">
+      <div className="w-full flex items-center justify-between px-8 pt-8 md:px-20 absolute top-0 z-50">
         <motion.div
           initial={{ x: -1000 }}
           animate={{ x: 0 }}
@@ -50,8 +71,7 @@ const HomeWithTheme = () => {
         </motion.button>
       </div>
 
-      {/* Main Content Section (centered) */}
-      <div className="flex  flex-col md:flex-row items-center justify-center min-h-screen px-4">
+      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-4">
         {/* Left - Image */}
         <motion.div
           className="w-full md:w-2/5 flex items-center justify-center p-4"
@@ -93,26 +113,48 @@ const HomeWithTheme = () => {
           </p>
 
           <motion.div className="pt-6 flex flex-col sm:flex-row gap-3">
-            {["Create a new wallet", "Import an existing wallet"].map(
-              (text, idx) => (
-                <motion.button
-                  key={idx}
-                  type="button"
-                  className="group relative text-[var(--dark-text)] px-12 py-4 rounded-3xl bg-[var(--accent)]
-                  shadow-[0_4px_14px_rgba(0,0,0,0.3),inset_0px_1px_2px_rgba(255,255,255,0.15),inset_0px_-1px_2px_rgba(0,0,0,0.25)]
-                  hover:shadow-[0_6px_20px_rgba(0,0,0,0.4),inset_0px_1px_3px_rgba(255,255,255,0.2),inset_0px_-1px_3px_rgba(0,0,0,0.3)]
-                  transition-all duration-300 ease-out font-medium tracking-wide"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span className="relative z-10 flex items-center justify-center">
-                    {text}
-                  </span>
-                  <span className="absolute inset-x-0 bottom-0 h-px w-3/4 mx-auto bg-[var(--text-color)] opacity-70"></span>
-                  <span className="absolute inset-x-0 -bottom-1 h-2 w-4/5 mx-auto opacity-0 group-hover:opacity-80 transition-all duration-500 blur-md bg-[var(--text-color)]"></span>
-                </motion.button>
-              )
-            )}
+            {[
+              { text: "Create a new wallet", path: "create" },
+              { text: "Import an existing wallet", path: "import" },
+            ].map((item, idx) => (
+              <motion.button
+                key={idx}
+                type="button"
+                className="group relative text-[var(--dark-text)] px-12 py-4 rounded-3xl bg-[var(--accent)]
+                shadow-[0_4px_14px_rgba(0,0,0,0.3),inset_0px_1px_2px_rgba(255,255,255,0.15),inset_0px_-1px_2px_rgba(0,0,0,0.25)]
+                hover:shadow-[0_6px_20px_rgba(0,0,0,0.4),inset_0px_1px_3px_rgba(255,255,255,0.2),inset_0px_-1px_3px_rgba(0,0,0,0.3)]
+                transition-all duration-300 ease-out font-medium tracking-wide"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => handleClick(item.path)}
+                disabled={isLoading[item.path]}
+                aria-label={item.text}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  {isLoading[item.path] ? (
+                    <>
+                      <MutatingDots
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="#2a0040"
+                        secondaryColor="#2a0040"
+                        radius="12.5"
+                        ariaLabel="mutating-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        className="w-5 h-5 mr-2 animate-spin"
+                      />
+                      Loading...
+                    </>
+                  ) : (
+                    item.text
+                  )}
+                </span>
+                <span className="absolute inset-x-0 bottom-0 h-px w-3/4 mx-auto bg-[var(--text-color)] opacity-70"></span>
+                <span className="absolute inset-x-0 -bottom-1 h-2 w-4/5 mx-auto opacity-0 group-hover:opacity-80 transition-all duration-500 blur-md bg-[var(--text-color)]"></span>
+              </motion.button>
+            ))}
           </motion.div>
         </motion.div>
       </div>
