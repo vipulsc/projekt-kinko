@@ -32,7 +32,7 @@ body,
 
   --text-color: #2a0040;
   --lighter-text: #abbbf6;
-  --box-shade:#7892f0;
+  --box-shade: #7892f0;
   --accent: #bf00ff;
   --dark-text: #ced5ef;
 }
@@ -82,4 +82,10 @@ html.dark body {
 
 html.dark .custom-text-shadow {
   text-shadow: 2px 2px 4px #bf00ff;
+}
+
+body::selection,
+*::selection {
+  background-color: var(--accent);
+  color: var(--text-color);
 }

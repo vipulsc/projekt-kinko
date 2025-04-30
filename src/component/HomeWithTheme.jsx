@@ -41,7 +41,7 @@ const HomeWithTheme = () => {
           <motion.img
             src="src/asset/wallet.png"
             alt="wallet"
-            className="w-60 sm:w-72 md:w-4/5 lg:w-full h-auto object-contain"
+            className="w-60 cursor-grabbing sm:w-72 md:w-4/5 lg:w-full h-auto object-contain"
             drag
             dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
             dragSnapToOrigin
@@ -82,7 +82,7 @@ const HomeWithTheme = () => {
                 <motion.button
                   key={idx}
                   type="button"
-                  className={`group relative text-[var(--dark-text)] rounded-3xl bg-[var(--accent)]
+                  className={`group cursor-pointer relative text-[var(--dark-text)] rounded-3xl bg-[var(--accent)]
                     shadow-[0_4px_14px_rgba(0,0,0,0.3),inset_0px_1px_2px_rgba(255,255,255,0.15),inset_0px_-1px_2px_rgba(0,0,0,0.25)]
                     hover:shadow-[0_6px_20px_rgba(0,0,0,0.4),inset_0px_1px_3px_rgba(255,255,255,0.2),inset_0px_-1px_3px_rgba(0,0,0,0.3)]
                     transition-all duration-300 ease-out font-medium tracking-wide

@@ -32,7 +32,8 @@ const HeaderComponent = () => {
           dragElastic={0.2}
           dragTransition={{ bounceStiffness: 900, bounceDamping: 15 }}
           dragSnapToOrigin
-          className="japanese-text tracking-wider text-[var(--accent)] text-4xl md:text-5xl lg:text-6xl shizuru-regular"
+          onClick={() => navigate("/")}
+          className="japanese-text cursor-pointer tracking-wider text-[var(--accent)] text-4xl md:text-5xl lg:text-6xl shizuru-regular"
         >
           金庫
         </motion.div>
