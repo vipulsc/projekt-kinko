@@ -71,7 +71,7 @@ export async function recoverMultipleWallets(mnemonic, endIndex) {
   return wallets;
 }
 
-const testkey =
-  "ripple question flag nest snake weapon lamp orange carry entire twice knock";
-const result = await recoverMultipleWallets(testkey, 0);
-console.log(result);
+// const testkey =
+//   "ripple question flag nest snake weapon lamp orange carry entire twice knock";
+// const result = await recoverMultipleWallets(testkey, 0);
+// console.log(result);

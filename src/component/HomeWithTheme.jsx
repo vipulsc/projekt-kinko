@@ -1,36 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
 import { MutatingDots } from "react-loader-spinner";
+import HeaderComponent from "./HeaderComponent";
+
 const HomeWithTheme = () => {
-  const [rotated, setRotated] = useState(false);
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "dark"
   );
-  const [isLoading, setIsLoading] = useState({
-    import: false,
-    create: false,
-  });
+  const [isLoading, setIsLoading] = useState({ import: false, create: false });
 
   const navigate = useNavigate();
 
   const handleClick = (path) => {
-    if (path === "import") {
-      setIsLoading({ ...isLoading, import: true });
-    } else if (path === "create") {
-      setIsLoading({ ...isLoading, create: true });
-    }
+    setIsLoading({ ...isLoading, [path]: true });
 
     setTimeout(() => {
       navigate(`/${path}`);
       setIsLoading({ import: false, create: false });
     }, 1000);
-  };
-
-  const toggleTheme = () => {
-    setRotated((prev) => !prev);
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   useEffect(() => {
@@ -40,36 +28,7 @@ const HomeWithTheme = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Header Section (logo and toggler) */}
-      <div className="w-full flex items-center justify-between px-8 pt-8 md:px-20 absolute top-0 z-50">
-        <motion.div
-          initial={{ x: -1000 }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.8 }}
-          drag
-          dragConstraints={{ left: 0, right: 300 }}
-          dragElastic={0.2}
-          dragTransition={{ bounceStiffness: 900, bounceDamping: 15 }}
-          dragSnapToOrigin
-          className="japanese-text tracking-wider text-[var(--accent)] text-4xl md:text-5xl lg:text-6xl shizuru-regular"
-        >
-          金庫
-        </motion.div>
-        <motion.button
-          onClick={toggleTheme}
-          initial={{ x: -1000, y: -100 }}
-          animate={{ rotate: rotated ? 720 : 0, x: 0, y: 0 }}
-          transition={{ x: { duration: 0.5 }, rotate: { duration: 1 } }}
-          className="cursor-pointer"
-        >
-          <img
-            src={theme === "dark" ? "light.svg" : "dark.svg"}
-            width={40}
-            height={40}
-            alt={theme}
-          />
-        </motion.button>
-      </div>
+      <HeaderComponent />
 
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-4">
         {/* Left - Image */}
@@ -82,7 +41,7 @@ const HomeWithTheme = () => {
           <motion.img
             src="src/asset/wallet.png"
             alt="wallet"
-            className="w-60 z-999 sm:w-72 md:w-4/5 lg:w-5/5 h-auto object-contain"
+            className="w-60 sm:w-72 md:w-4/5 lg:w-full h-auto object-contain"
             drag
             dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
             dragSnapToOrigin
@@ -116,45 +75,52 @@ const HomeWithTheme = () => {
             {[
               { text: "Create a new wallet", path: "create" },
               { text: "Import an existing wallet", path: "import" },
-            ].map((item, idx) => (
-              <motion.button
-                key={idx}
-                type="button"
-                className="group relative text-[var(--dark-text)] px-12 py-4 rounded-3xl bg-[var(--accent)]
-                shadow-[0_4px_14px_rgba(0,0,0,0.3),inset_0px_1px_2px_rgba(255,255,255,0.15),inset_0px_-1px_2px_rgba(0,0,0,0.25)]
-                hover:shadow-[0_6px_20px_rgba(0,0,0,0.4),inset_0px_1px_3px_rgba(255,255,255,0.2),inset_0px_-1px_3px_rgba(0,0,0,0.3)]
-                transition-all duration-300 ease-out font-medium tracking-wide"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleClick(item.path)}
-                disabled={isLoading[item.path]}
-                aria-label={item.text}
-              >
-                <span className="relative z-10 flex items-center justify-center">
-                  {isLoading[item.path] ? (
-                    <>
-                      <MutatingDots
-                        visible={true}
-                        height="100"
-                        width="100"
-                        color="#2a0040"
-                        secondaryColor="#2a0040"
-                        radius="12.5"
-                        ariaLabel="mutating-dots-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        className="w-5 h-5 mr-2 animate-spin"
-                      />
-                      Loading...
-                    </>
-                  ) : (
-                    item.text
-                  )}
-                </span>
-                <span className="absolute inset-x-0 bottom-0 h-px w-3/4 mx-auto bg-[var(--text-color)] opacity-70"></span>
-                <span className="absolute inset-x-0 -bottom-1 h-2 w-4/5 mx-auto opacity-0 group-hover:opacity-80 transition-all duration-500 blur-md bg-[var(--text-color)]"></span>
-              </motion.button>
-            ))}
+            ].map((item, idx) => {
+              const isButtonLoading = isLoading[item.path];
+
+              return (
+                <motion.button
+                  key={idx}
+                  type="button"
+                  className={`group relative text-[var(--dark-text)] rounded-3xl bg-[var(--accent)]
+                    shadow-[0_4px_14px_rgba(0,0,0,0.3),inset_0px_1px_2px_rgba(255,255,255,0.15),inset_0px_-1px_2px_rgba(0,0,0,0.25)]
+                    hover:shadow-[0_6px_20px_rgba(0,0,0,0.4),inset_0px_1px_3px_rgba(255,255,255,0.2),inset_0px_-1px_3px_rgba(0,0,0,0.3)]
+                    transition-all duration-300 ease-out font-medium tracking-wide
+                    ${
+                      isButtonLoading
+                        ? "px-16 py-5 text-xl"
+                        : "px-12 py-4 text-base"
+                    }`}
+                  onClick={() => handleClick(item.path)}
+                  disabled={isButtonLoading}
+                  aria-label={item.text}
+                >
+                  <span className="relative z-10 flex items-center justify-center">
+                    {isButtonLoading ? (
+                      <>
+                        <MutatingDots
+                          visible={true}
+                          height="100"
+                          width="100"
+                          color="#2a0040"
+                          secondaryColor="#2a0040"
+                          radius="12.5"
+                          ariaLabel="mutating-dots-loading"
+                          wrapperStyle={{}}
+                          wrapperClass=""
+                          className="w-5 h-5 mr-2"
+                        />
+                        Loading...
+                      </>
+                    ) : (
+                      item.text
+                    )}
+                  </span>
+                  <span className="absolute inset-x-0 bottom-0 h-px w-3/4 mx-auto bg-[var(--text-color)] opacity-70"></span>
+                  <span className="absolute inset-x-0 -bottom-1 h-2 w-4/5 mx-auto opacity-0 group-hover:opacity-80 transition-all duration-500 blur-md bg-[var(--text-color)]"></span>
+                </motion.button>
+              );
+            })}
           </motion.div>
         </motion.div>
       </div>

@@ -1,86 +1,70 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
-@import "tailwindcss"; /* Make sure this import is correct */
+@import "tailwindcss"; /* Make sure this path is correct based on your setup */
 
 * {
   box-sizing: border-box;
+  transition: color 0.8s ease, background 0.8s ease;
 }
 
 html,
 body,
 #root {
-  height: 100%; /* Change from 100vh to 100% */
-  width: 100%; /* Change from 100vw to 100% */
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
 
+/* Background gradients */
 :root {
-  --light-bg: radial-gradient(circle at 20% 20%, #d4d0f5 0%, transparent 50%),
+  --light-gradient: radial-gradient(
+      circle at 20% 20%,
+      #d4d0f5 0%,
+      transparent 50%
+    ),
     radial-gradient(circle at 80% 80%, #b8c4ee 0%, #f7f8ff 80%);
-  --dark-bg: radial-gradient(circle at 20% 20%, #03034a 0%, transparent 50%),
+  --dark-gradient: radial-gradient(
+      circle at 20% 20%,
+      #03034a 0%,
+      transparent 50%
+    ),
     radial-gradient(circle at 80% 80%, #2a0040 0%, #030014 80%);
 
   --text-color: #2a0040;
+  --lighter-text: #abbbf6;
+  --box-shade:#7892f0;
   --accent: #bf00ff;
   --dark-text: #ced5ef;
-  .custom-text-shadow {
-    text-shadow: 2px 2px 4px #ff6b6b;
-  }
 }
 
 html.dark {
   --text-color: #ced5ef;
+  --lighter-text: #450c63de;
   --accent: #ff6b6b;
   --dark-text: #2a0040;
-  .custom-text-shadow {
-    text-shadow: 2px 2px 4px #bf00ff;
-  }
 }
 
-* {
-  transition: color 0.8s ease, background 0.8s ease;
-}
-
-/* Positioning pseudo-elements */
+/* Background & text color switching */
 body {
-  position: relative;
+  background: var(--light-gradient);
+  color: var(--text-color);
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  font-family: "Lora", serif;
 }
 
-body::before,
-body::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: opacity 0.8s ease;
-  z-index: -1;
+html.dark body {
+  background: var(--dark-gradient);
+  color: var(--text-color);
 }
 
-body::before {
-  background-image: var(--light-bg);
-  opacity: 1;
-}
-
-body::after {
-  background-image: var(--dark-bg);
-  opacity: 0;
-}
-
-html.dark body::before {
-  opacity: 0;
-}
-
-html.dark body::after {
-  opacity: 1;
-}
-
-/* styles.css */
+/* Custom fonts */
 .lora {
   font-family: "Lora", serif;
 }
-/* styles.css */
+
 .lora-italic {
   font-family: "Lora", serif;
   font-style: italic;
@@ -91,15 +75,11 @@ html.dark body::after {
   font-family: "Noto Serif JP", serif;
 }
 
-html,
-body,
-#root {
-  height: 100%;
+/* Optional custom shadow */
+.custom-text-shadow {
+  text-shadow: 2px 2px 4px #ff6b6b;
 }
 
-body {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
+html.dark .custom-text-shadow {
+  text-shadow: 2px 2px 4px #bf00ff;
 }
