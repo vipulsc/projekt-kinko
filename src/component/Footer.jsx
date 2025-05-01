@@ -3,24 +3,17 @@ import { useEffect, useState } from "react";
 import { Github } from "lucide-react";
 
 const Footer = () => {
-  const [showFooter, setShowFooter] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
+  const [showFooter, setShowFooter] = useState(true); // show initially
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-
-      if (scrollY > 10) setHasScrolled(true);
-
-      const atBottom =
-        window.innerHeight + scrollY >= document.body.offsetHeight - 10;
-
-      setShowFooter(hasScrolled && atBottom);
+      setShowFooter(scrollY < 10); // show only if user hasn't scrolled much
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasScrolled]);
+  }, []);
 
   return (
     <AnimatePresence>
