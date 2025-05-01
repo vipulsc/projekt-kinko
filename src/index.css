@@ -17,19 +17,22 @@ body,
 
 /* Background gradients */
 :root {
-  --light-gradient: radial-gradient(
+  --gradient-blue-purple-light: radial-gradient(
       circle at 20% 20%,
       #d4d0f5 0%,
       transparent 50%
     ),
     radial-gradient(circle at 80% 80%, #b8c4ee 0%, #f7f8ff 80%);
-  --dark-gradient: radial-gradient(
+
+  --gradient-blue-purple-dark: radial-gradient(
       circle at 20% 20%,
       #03034a 0%,
       transparent 50%
     ),
     radial-gradient(circle at 80% 80%, #2a0040 0%, #030014 80%);
 
+  /* Default theme (light) */
+  --gradienta: var(--gradient-blue-purple-light);
   --text-color: #2a0040;
   --lighter-text: #abbbf6;
   --box-shade: #7892f0;
@@ -37,7 +40,9 @@ body,
   --dark-text: #ced5ef;
 }
 
+/* Dark theme overrides */
 html.dark {
+  --gradienta: var(--gradient-blue-purple-dark);
   --text-color: #ced5ef;
   --lighter-text: #450c63de;
   --accent: #ff6b6b;
@@ -45,20 +50,6 @@ html.dark {
 }
 
 /* Background & text color switching */
-body {
-  background: var(--light-gradient);
-  color: var(--text-color);
-  background-repeat: repeat;
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-  font-family: "Lora", serif;
-}
-
-html.dark body {
-  background: var(--dark-gradient);
-  color: var(--text-color);
-}
 
 /* Custom fonts */
 .lora {
@@ -88,4 +79,23 @@ body::selection,
 *::selection {
   background-color: var(--accent);
   color: var(--text-color);
+}
+
+* {
+  box-sizing: border-box;
+  transition: color 0.8s ease;
+}
+
+/* Add this specific transition for background gradients */
+body,
+div {
+  transition: background 1s ease !important;
+}
+body {
+  background: var(--gradienta);
+  color: var(--text-color);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
