@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { MutatingDots } from "react-loader-spinner";
+import { ClipLoader } from "react-spinners"; // Import the spinner
 import HeaderComponent from "./HeaderComponent";
 
 const HomeWithTheme = () => {
@@ -98,17 +98,12 @@ const HomeWithTheme = () => {
                   <span className="relative z-10 flex items-center justify-center">
                     {isButtonLoading ? (
                       <>
-                        <MutatingDots
-                          visible={true}
-                          height="100"
-                          width="100"
+                        <ClipLoader
                           color="#2a0040"
-                          secondaryColor="#2a0040"
-                          radius="12.5"
-                          ariaLabel="mutating-dots-loading"
-                          wrapperStyle={{}}
-                          wrapperClass=""
-                          className="w-5 h-5 mr-2"
+                          loading={true}
+                          size={20}
+                          aria-label="Loading"
+                          className="mr-2"
                         />
                         Loading...
                       </>
