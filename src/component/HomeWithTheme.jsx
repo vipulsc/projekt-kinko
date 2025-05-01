@@ -39,7 +39,7 @@ const HomeWithTheme = () => {
           transition={{ duration: 1 }}
         >
           <motion.img
-            src="src/asset/wallet.webp"
+            src="/wallet.webp"
             alt="wallet"
             className="w-60 cursor-grabbing sm:w-72 md:w-4/5 lg:w-full h-auto object-contain"
             drag
