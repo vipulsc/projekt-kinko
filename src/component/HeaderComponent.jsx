@@ -37,6 +37,29 @@ const HeaderComponent = () => {
         >
           金庫
         </motion.div>
+        <motion.div
+          initial={{ opacity: 0.2 }}
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="flex items-center gap-2 bg-[var(--lighter-text)] text-[var(--text-color)] px-4 py-1 rounded-full text-xs md:text-sm font-medium border border-[#9945FF]/40 shadow-[0_0_10px_#9945FF33]"
+        >
+          <span className="flex items-center gap-1">
+            <img
+              src="/solana.svg"
+              color="white"
+              alt="Solana"
+              width={16}
+              height={16}
+              className="inline-block"
+            />
+            Solana
+          </span>
+          <span className="opacity-40 text-[var(--text-color)]">Only</span>
+        </motion.div>
 
         <motion.button
           onClick={toggleTheme}

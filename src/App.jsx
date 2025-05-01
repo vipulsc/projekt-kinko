@@ -3,7 +3,7 @@ import "./App.css";
 import WelcomeScreen from "./component/WelcomeScreen";
 import HomeWithTheme from "./component/HomeWithTheme";
 import { Routes, Route } from "react-router-dom";
-
+import Footer from "./component/Footer";
 const ImportWallet = lazy(() => import("./component/ImportWallet"));
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
         <Route path="/" element={<HomeWithTheme />} />
         <Route path="/import" element={<ImportWallet />} />
       </Routes>
+      <Footer />
     </Suspense>
   );
 }
