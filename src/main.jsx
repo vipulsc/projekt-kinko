@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
-import * as buffer from "buffer"; // Import everything from the buffer module
+import * as buffer from "buffer";
 import process from "process";
 
 // Polyfill `Buffer` and `process` globally

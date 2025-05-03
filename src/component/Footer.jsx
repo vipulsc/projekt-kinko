@@ -8,7 +8,7 @@ const Footer = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setShowFooter(scrollY < 10); // show only if user hasn't scrolled much
+      setShowFooter(scrollY < 10);
     };
 
     window.addEventListener("scroll", handleScroll);
