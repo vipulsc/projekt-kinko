@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Github } from "lucide-react";
 
 const Footer = () => {
-  const [showFooter, setShowFooter] = useState(true); // show initially
+  const [showFooter, setShowFooter] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +25,6 @@ const Footer = () => {
           transition={{ duration: 0.4, ease: "easeOut" }}
           className="fixed bottom-0 left-0 w-full bg-[var(--lighter-text)] backdrop-blur-md border-t border-white/10 px-4 py-1.5 flex justify-between items-center z-50 text-xs md:text-sm"
         >
-          {/* GitHub Icon */}
           <motion.a
             href="https://github.com/vipulsc"
             target="_blank"
@@ -38,7 +37,6 @@ const Footer = () => {
             <Github className="w-6 h-6" />
           </motion.a>
 
-          {/* Version Badge */}
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -48,7 +46,6 @@ const Footer = () => {
             v1.0
           </motion.div>
 
-          {/* X Icon */}
           <motion.a
             href="https://x.com/vipulsc1"
             target="_blank"

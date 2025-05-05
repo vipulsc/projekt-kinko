@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { ClipLoader } from "react-spinners"; // Import the spinner
+import { ClipLoader } from "react-spinners";
 import HeaderComponent from "./HeaderComponent";
 
 const HomeWithTheme = () => {
@@ -31,7 +31,6 @@ const HomeWithTheme = () => {
       <HeaderComponent />
 
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-4">
-        {/* Left - Image */}
         <motion.div
           className="w-full md:w-2/5 flex items-center justify-center p-4"
           initial={{ opacity: 0, x: -50 }}
@@ -52,7 +51,6 @@ const HomeWithTheme = () => {
           />
         </motion.div>
 
-        {/* Right - Text Content */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: [0, 0.5, 1], y: 0 }}

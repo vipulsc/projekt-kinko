@@ -22,7 +22,6 @@ export async function recoverSolanaWallet(mnemonic, accountIndex) {
     throw new Error("Invalid mnemonic phrase");
   }
 
-  // ✅ Await is required here
   const seed = await bip39.mnemonicToSeed(mnemonic);
   const derivePath = `m/44'/501'/${accountIndex}'/0'`;
   const derived = ed25519.derivePath(derivePath, seed.toString("hex"));

@@ -6,7 +6,6 @@ import "./index.css";
 import * as buffer from "buffer";
 import process from "process";
 
-// Polyfill `Buffer` and `process` globally
 window.Buffer = buffer.Buffer;
 window.process = process;
 

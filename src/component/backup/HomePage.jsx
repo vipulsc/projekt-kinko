@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 const HomePage = () => {
   return (
     <div className="flex flex-col mt-6.5 md:flex-row  justify-center px-4">
-      {/* Left column - 40% width with image */}
       <motion.div
         className="w-full  md:w-2/5 flex items-center justify-center p-4"
         initial={{ opacity: 0, x: -50 }}
@@ -27,7 +26,6 @@ const HomePage = () => {
         </motion.div>
       </motion.div>
 
-      {/* Right column - 60% width with content */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: [0, 0.5, 1], y: 0 }}
