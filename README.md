@@ -6,7 +6,7 @@
 
 ### Your Secure Solana Vault — Generate, Manage, and Control Your Solana Wallets with Ease.
 
-[![GitHub license](https://img.shields.io/github/license/vipulsc/kinko?color=red)](https://github.com/vipulsc/kinko/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/vipulsc/projekt-kinko?color=red)](https://github.com/vipulsc/projekt-kinko/blob/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/vipulsc/kinko/pulls)
 [![Made with React](https://img.shields.io/badge/Made%20with-React-61DAFB?logo=react&logoColor=white)](https://reactjs.org/)
 
