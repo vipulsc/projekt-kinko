@@ -4,8 +4,9 @@ import WelcomeScreen from "./component/WelcomeScreen";
 import HomeWithTheme from "./component/HomeWithTheme";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./component/Footer";
+import MnemonicGenerator from "./component/Wallet";
 const ImportWallet = lazy(() => import("./component/ImportWallet"));
-
+const newWallet = lazy(() => import("./component/Wallet"));
 function App() {
   const [showWelcome, setShowWelcome] = useState(true);
 
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeWithTheme />} />
         <Route path="/import" element={<ImportWallet />} />
+        <Route path="/create" element={<MnemonicGenerator />} />
       </Routes>
       <Footer />
     </Suspense>
