@@ -220,7 +220,7 @@ const ImportWalletPage = () => {
                           <ChevronLeftIcon size={24} />
                         </button>
                         <div className="text-center text-[var(--text-color)] font-medium">
-                          Wallet {currentWallet?.index}
+                          Wallet #{currentWallet?.index}
                         </div>
                         <button
                           onClick={goToNextWallet}

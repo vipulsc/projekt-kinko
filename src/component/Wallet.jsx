@@ -315,7 +315,7 @@ const WalletGenerator = () => {
                   {showSecret ? (
                     wallets[activeIndex].secretKey
                   ) : (
-                    <span className="select-none text-center block overflow-hidden text-ellipsis text-[var(--dark-text)]">
+                    <span className="select-none block overflow-hidden text-ellipsis text-[var(--dark-text)]">
                       ••••••••••••••••••••••••••••••••••••••••
                     </span>
                   )}
