@@ -7,6 +7,8 @@ import Footer from "./component/Footer";
 import MnemonicGenerator from "./component/Wallet";
 const ImportWallet = lazy(() => import("./component/ImportWallet"));
 const newWallet = lazy(() => import("./component/Wallet"));
+import { Analytics } from "@vercel/analytics/react";
+
 function App() {
   const [showWelcome, setShowWelcome] = useState(true);
 
@@ -22,20 +24,23 @@ function App() {
   }
 
   return (
-    <Suspense
-      fallback={
-        <div className="flex justify-center items-center h-screen">
-          Loading...
-        </div>
-      }
-    >
-      <Routes>
-        <Route path="/" element={<HomeWithTheme />} />
-        <Route path="/import" element={<ImportWallet />} />
-        <Route path="/create" element={<MnemonicGenerator />} />
-      </Routes>
-      <Footer />
-    </Suspense>
+    <>
+      <Analytics />
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-screen">
+            Loading...
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<HomeWithTheme />} />
+          <Route path="/import" element={<ImportWallet />} />
+          <Route path="/create" element={<MnemonicGenerator />} />
+        </Routes>
+        <Footer />
+      </Suspense>
+    </>
   );
 }
 
